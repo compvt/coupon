@@ -25,7 +25,6 @@
     a { color: var(--purple); text-decoration: none; }
     a:hover { text-decoration: underline; }
 
-    /* Fade-in overlay */
     #fade-overlay {
       position: fixed;
       top: 0;
@@ -36,11 +35,8 @@
       z-index: 9999;
       animation: fadeOutOverlay 2s forwards;
     }
-    @keyframes fadeOutOverlay {
-      to { opacity: 0; visibility: hidden; }
-    }
+    @keyframes fadeOutOverlay { to { opacity: 0; visibility: hidden; } }
 
-    /* Top Bar Only */
     .topbar {
       position: sticky;
       top: 0;
@@ -53,9 +49,7 @@
       align-items: center;
       box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     }
-    .topbar img {
-      height: 40px;
-    }
+    .topbar img { height: 40px; }
     .topbar nav a {
       color: var(--white);
       margin-left: 20px;
@@ -63,17 +57,10 @@
       text-decoration: none;
       transition: color 0.3s;
     }
-    .topbar nav a:hover {
-      color: var(--yellow);
-    }
+    .topbar nav a:hover { color: var(--yellow); }
     @media(max-width: 768px) {
-      .topbar {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .topbar nav a {
-        margin: 10px 0 0;
-      }
+      .topbar { flex-direction: column; align-items: flex-start; }
+      .topbar nav a { margin: 10px 0 0; }
     }
 
     header {
@@ -87,22 +74,9 @@
       text-align: center;
       padding: 40px 20px;
     }
-    header img {
-      max-width: 220px;
-      margin-bottom: 20px;
-      animation: fadeIn 2s ease 1s; /* start after overlay fade */
-    }
-    header h1 {
-      font-size: 3.5em;
-      margin: 0;
-      animation: fadeIn 2s ease 1.2s; /* start after overlay fade */
-    }
-    header p {
-      font-size: 1.3em;
-      margin: 15px 0 35px;
-      color: #ddd;
-      animation: fadeIn 2s ease 1.4s; /* start after overlay fade */
-    }
+    header img { max-width: 220px; margin-bottom: 20px; animation: fadeIn 2s ease 1s; }
+    header h1 { font-size: 3.5em; margin: 0; animation: fadeIn 2s ease 1.2s; }
+    header p { font-size: 1.3em; margin: 15px 0 35px; color: #ddd; animation: fadeIn 2s ease 1.4s; }
     .button {
       display: inline-block;
       padding: 16px 32px;
@@ -113,10 +87,7 @@
       box-shadow: 0 6px 20px rgba(0,0,0,0.3);
       transition: transform 0.3s, box-shadow 0.3s;
     }
-    .button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-    }
+    .button:hover { transform: scale(1.05); box-shadow: 0 10px 25px rgba(0,0,0,0.4); }
 
     section {
       padding: 80px 20px;
@@ -130,7 +101,6 @@
     section:nth-of-type(2) { animation-delay: 0.5s; }
     section:nth-of-type(3) { animation-delay: 0.7s; }
     section:nth-of-type(4) { animation-delay: 0.9s; }
-
     section h2 {
       font-size: 2.2em;
       margin-bottom: 30px;
@@ -147,11 +117,7 @@
       margin-top: 8px;
       border-radius: 2px;
     }
-    section p {
-      font-size: 1.1em;
-      max-width: 800px;
-      margin-bottom: 40px;
-    }
+    section p { font-size: 1.1em; max-width: 800px; margin-bottom: 40px; }
     .features ul {
       list-style: none;
       padding: 0;
@@ -166,20 +132,61 @@
       transition: transform 0.4s;
       position: relative;
     }
-    .features li::before {
-      content: "✔";
-      color: var(--yellow);
-      font-weight: bold;
-      margin-right: 10px;
-      font-size: 1.2em;
-    }
+    .features li::before { content: "✔"; color: var(--yellow); font-weight: bold; margin-right: 10px; font-size: 1.2em; }
     .features li:hover { transform: translateY(-8px); }
 
-    .screenshot {
+    .screenshot-carousel {
+      position: relative;
+      overflow: hidden;
       max-width: 100%;
       border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
       margin-top: 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    .carousel-track {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+    .screenshot-carousel .screenshot { flex-shrink: 0; width: 100%; border-radius: 12px; }
+    .carousel-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.4);
+      color: white;
+      border: none;
+      font-size: 1em;
+      padding: 10px;
+      cursor: pointer;
+      z-index: 10;
+      border-radius: 50%;
+      transition: background 0.3s;
+    }
+    .carousel-button:hover { background: rgba(0,0,0,0.7); }
+    .carousel-button.prev { left: 10px; }
+    .carousel-button.next { right: 10px; }
+
+    .carousel-dots {
+      text-align: center;
+      margin-top: 15px;
+    }
+    .carousel-dots .dot {
+      display: inline-block;
+      width: 25px;
+      height: 25px;
+      margin: 0 5px;
+      background: #ccc;
+      border-radius: 50%;
+      color: black;
+      line-height: 25px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+      user-select: none;
+    }
+    .carousel-dots .dot.active {
+      background: var(--purple);
+      color: white;
     }
 
     footer {
@@ -190,15 +197,8 @@
       font-size: 0.9em;
       margin-top: 60px;
     }
-
-    @keyframes fadeInUp {
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
+    @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     @media(max-width: 768px) {
       header h1 { font-size: 2.4em; }
       .features li { padding: 18px; }
@@ -230,7 +230,23 @@
   <section class="about" id="about">
     <h2>About CompVT Coupon</h2>
     <p>CompVT Coupon is a modern Abaqus plugin that accelerates the setup of coupon-level composite specimens. Generate high-fidelity 3D finite element models for composite coupon tests (open-hole, unnotched, impact, etc.) with customizable layups, cohesive modeling, and smart mesh refinement – all in minutes.</p>
-    <img src="screenshot-1.png" alt="Screenshot of CompVT Coupon plugin interface" class="screenshot" loading="lazy">
+
+    <div class="screenshot-carousel">
+      <div class="carousel-track">
+        <img src="screenshot-1.png" alt="Screenshot 1" class="screenshot">
+        <img src="screenshot-2.png" alt="Screenshot 2" class="screenshot">
+        <img src="screenshot-3.png" alt="Screenshot 3" class="screenshot">
+      </div>
+      <button class="carousel-button prev">&#10094;</button>
+      <button class="carousel-button next">&#10095;</button>
+    </div>
+
+    <div class="carousel-dots">
+      <span class="dot" data-index="0">1</span>
+      <span class="dot" data-index="1">2</span>
+      <span class="dot" data-index="2">3</span>
+      <span class="dot" id="pause-play-dot">&#10074;&#10074;</span>
+    </div>
   </section>
 
   <section class="features" id="features">
@@ -245,11 +261,11 @@
   </section>
 
   <section class="materials" id="materials">
-  <h2>User Manual & Tutorials</h2>
-  <p>
-    Stay tuned for release updates and the user manual!<br><br>
-    Check out our <a href="https://www.youtube.com/@CompVT" target="_blank">YouTube channel</a> for tutorials.
-  </p>
+    <h2>User Manual & Tutorials</h2>
+    <p>
+      Stay tuned for release updates and the user manual!<br><br>
+      Check out our <a href="https://www.youtube.com/@CompVT" target="_blank">YouTube channel</a> for tutorials.
+    </p>
   </section>
 
   <section id="contact">
@@ -266,6 +282,57 @@
 <footer role="contentinfo">
   &copy; 2025 CompVT Coupon. All rights reserved.
 </footer>
+
+<script>
+  const track = document.querySelector('.carousel-track');
+  const images = document.querySelectorAll('.carousel-track .screenshot');
+  const prevBtn = document.querySelector('.carousel-button.prev');
+  const nextBtn = document.querySelector('.carousel-button.next');
+  const dots = document.querySelectorAll('.carousel-dots .dot');
+  let current = 0;
+  let autoPlay = true;
+  const pausePlayDot = document.getElementById('pause-play-dot');
+
+  function updateCarousel() {
+    track.style.transform = `translateX(-${current * 100}%)`;
+  }
+  function updateDots() {
+    dots.forEach(dot => dot.classList.remove('active'));
+    if (dots[current]) dots[current].classList.add('active');
+  }
+  prevBtn.addEventListener('click', () => {
+    current = (current - 1 + images.length) % images.length;
+    updateCarousel();
+    updateDots();
+  });
+  nextBtn.addEventListener('click', () => {
+    current = (current + 1) % images.length;
+    updateCarousel();
+    updateDots();
+  });
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      const idx = dot.dataset.index;
+      if (idx !== undefined) {
+        current = parseInt(idx);
+        updateCarousel();
+        updateDots();
+      }
+    });
+  });
+  pausePlayDot.addEventListener('click', () => {
+    autoPlay = !autoPlay;
+    pausePlayDot.innerHTML = autoPlay ? '&#10074;&#10074;' : '&#9658;';
+  });
+  updateDots();
+  setInterval(() => {
+    if (autoPlay) {
+      current = (current + 1) % images.length;
+      updateCarousel();
+      updateDots();
+    }
+  }, 4000);
+</script>
 
 </body>
 </html>
