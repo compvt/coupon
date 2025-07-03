@@ -339,6 +339,63 @@
       updateDots();
     }
   }, 4000);
+
+
+  // --- Swipe Support ---
+  let startX = 0;
+  let isDragging = false;
+
+  track.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+    isDragging = true;
+  });
+
+  track.addEventListener('touchmove', (e) => {
+    if (!isDragging) return;
+    let diff = e.touches[0].clientX - startX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) {
+        current = (current - 1 + images.length) % images.length;
+      } else {
+        current = (current + 1) % images.length;
+      }
+      updateCarousel();
+      updateDots();
+      isDragging = false;
+    }
+  });
+
+  track.addEventListener('touchend', () => {
+    isDragging = false;
+  });
+
+  track.addEventListener('mousedown', (e) => {
+    startX = e.clientX;
+    isDragging = true;
+  });
+
+  track.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    let diff = e.clientX - startX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) {
+        current = (current - 1 + images.length) % images.length;
+      } else {
+        current = (current + 1) % images.length;
+      }
+      updateCarousel();
+      updateDots();
+      isDragging = false;
+    }
+  });
+
+  track.addEventListener('mouseup', () => {
+    isDragging = false;
+  });
+
+  track.addEventListener('mouseleave', () => {
+    isDragging = false;
+  });
 </script>
 
 </body>
